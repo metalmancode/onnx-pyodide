@@ -1,9 +1,3 @@
-# Draft comment for pyodide/pyodide-recipes#216
-
-Do not post this draft until the public repository URL is final.
-
----
-
 I have a reproducible experimental ONNX 1.15.0 recipe working with Pyodide
 0.29.4 / Python 3.13 (`pyodide-build` 0.34.4).
 
@@ -23,6 +17,12 @@ I also tested the complete browser path, not only `import onnx`:
 
 The public recipe, patches, structural check, and browser proof are here:
 https://github.com/metalmancode/onnx-pyodide
+
+Live end-to-end proof:
+https://metalmancode.github.io/onnx-pyodide/demo/
+
+Release and wheel:
+https://github.com/metalmancode/onnx-pyodide/releases/tag/v0.1.0
 
 The locally reproduced wheel SHA-256 is:
 `2a827f6e2649395743afac49186343ca9221f48a1c67cce300cd019a7f448cd4`
