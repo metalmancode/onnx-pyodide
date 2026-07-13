@@ -15,6 +15,8 @@
       pre { padding: 1rem; border: 1px solid #8886; border-radius: .5rem; white-space: pre-wrap; }
       .ok { color: #16803a; }
       .error { color: #c53030; }
+      .links { display: flex; flex-wrap: wrap; gap: .8rem; margin: 1rem 0 1.5rem; }
+      .links a { font-weight: 650; }
     </style>
   </head>
   <body>
@@ -24,6 +26,12 @@
       validates the graph with ONNX, and executes it with ONNX Runtime Web.
       Everything happens in this browser tab.
     </p>
+    <p class="links">
+      <a href="https://mldeck.com/">Try MLDeck</a>
+      <a href="https://mldeck.com/export-onnx-browser">How MLDeck uses browser ONNX export</a>
+      <a href="mailto:contact@mldeck.com">Contact MLDeck</a>
+      <a href="https://github.com/metalmancode/onnx-pyodide">View source</a>
+    </p>
     <label for="wheel">Wheel URL</label>
     <input
       id="wheel"
@@ -32,6 +40,11 @@
     <button id="run" type="button">Run end-to-end proof</button>
     <button id="download" type="button" disabled>Download generated model.onnx</button>
     <pre id="status">Ready.</pre>
+    <p>
+      Created by Gholamreza Rashidi Ardestani from technology used in
+      <a href="https://mldeck.com/">MLDeck</a>. For browser-ML integration or
+      collaboration, email <a href="mailto:contact@mldeck.com">contact@mldeck.com</a>.
+    </p>
     <script>
       const status = document.querySelector("#status");
       const runButton = document.querySelector("#run");

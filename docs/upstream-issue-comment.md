@@ -30,6 +30,9 @@ The locally reproduced wheel SHA-256 is:
 This work came from the browser-local ML pipeline used in MLDeck:
 https://mldeck.com/
 
+For related browser-ML integration or collaboration:
+contact@mldeck.com
+
 I would be happy to adapt the recipe to the repository's current conventions.
 Would maintainers prefer a pull request with this proven ONNX 1.15 version set,
 or an update to a newer ONNX release first?

@@ -56,6 +56,9 @@ product logic, service configuration, and customer concerns remain separate.
 The port and reproducible proof were created by Gholamreza Rashidi Ardestani,
 creator and developer of MLDeck.
 
+To discuss browser-local ML integration, a custom Pyodide/Wasm port, or an
+MLDeck pilot, contact [contact@mldeck.com](mailto:contact@mldeck.com).
+
 This boundary makes the infrastructure reviewable and reusable while the
 product continues to compete on workflow, validation, usability, and support.
 

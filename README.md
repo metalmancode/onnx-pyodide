@@ -4,6 +4,13 @@ An experimental, reproducible build of the ONNX Python package for Pyodide,
 plus an end-to-end browser proof using `scikit-learn`, `skl2onnx`, and
 ONNX Runtime Web.
 
+Created by **Gholamreza Rashidi Ardestani** from the browser-local ONNX export
+work used in [MLDeck](https://mldeck.com/).
+
+**[Run the live browser proof](https://metalmancode.github.io/onnx-pyodide/demo/)**
+· **[Try MLDeck](https://mldeck.com/)**
+· **[Contact MLDeck](mailto:contact@mldeck.com)**
+
 The project exists to advance
 [pyodide/pyodide-recipes#216](https://github.com/pyodide/pyodide-recipes/issues/216),
 which tracks adding the ONNX Python package to the Pyodide distribution.
@@ -81,6 +88,9 @@ contains no MLDeck domain lock.
 
 Open <http://localhost:8000/demo/> and select **Run end-to-end proof**.
 
+The published proof is available at
+<https://metalmancode.github.io/onnx-pyodide/demo/>.
+
 The first run downloads Pyodide, scientific Python dependencies, and
 ONNX Runtime Web. Raw training data used by the proof stays in the browser.
 
@@ -123,6 +133,9 @@ ONNX communities.
 
 This port and reproducible browser proof were created by Gholamreza Rashidi
 Ardestani ([@metalmancode](https://github.com/metalmancode)).
+
+For browser-ML integration, custom Pyodide/Wasm package work, or collaboration,
+contact [contact@mldeck.com](mailto:contact@mldeck.com).
 
 An earlier public proof for ONNX 1.13 and Python 3.10 was created by
 [Joseph Rocca](https://github.com/josephrocca/onnx-pyodide). This repository

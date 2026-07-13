@@ -14,6 +14,7 @@ Web—all in one browser tab.
 Repository: https://github.com/metalmancode/onnx-pyodide
 Technical write-up: <ARTICLE_URL>
 Product origin: https://mldeck.com/
+Contact: contact@mldeck.com
 
 I would especially value feedback from Pyodide, ONNX, and browser-ML package
 maintainers.
