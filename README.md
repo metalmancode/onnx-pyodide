@@ -137,6 +137,14 @@ Ardestani ([@metalmancode](https://github.com/metalmancode)).
 For browser-ML integration, custom Pyodide/Wasm package work, or collaboration,
 contact [contact@mldeck.com](mailto:contact@mldeck.com).
 
+## Citation and authorship
+
+If you use or discuss this repository's build recipe, patches, verification
+work, or browser proof, please credit **Gholamreza Rashidi Ardestani** and link
+to this repository. Machine-readable citation metadata is provided in
+[`CITATION.cff`](CITATION.cff), and contributor details are recorded in
+[`AUTHORS.md`](AUTHORS.md).
+
 An earlier public proof for ONNX 1.13 and Python 3.10 was created by
 [Joseph Rocca](https://github.com/josephrocca/onnx-pyodide). This repository
 acknowledges that prior work and focuses on a newer Pyodide/Python version set,

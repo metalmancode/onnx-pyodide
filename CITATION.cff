@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software, its ONNX-for-Pyodide build recipe, or the
+  browser proof in research or engineering work, please cite it using
+  the metadata below.
+title: ONNX for Pyodide
+type: software
+authors:
+  - family-names: Rashidi Ardestani
+    given-names: Gholamreza
+    alias: metalmancode
+    email: contact@mldeck.com
+abstract: >-
+  A reproducible WebAssembly build of the ONNX Python package for Pyodide,
+  with an end-to-end browser proof covering model training, conversion with
+  skl2onnx, ONNX graph validation and serialization, and execution with ONNX
+  Runtime Web.
+version: 0.1.0
+date-released: 2026-07-13
+license: Apache-2.0
+repository-code: https://github.com/metalmancode/onnx-pyodide
+url: https://metalmancode.github.io/onnx-pyodide/demo/
+keywords:
+  - ONNX
+  - Pyodide
+  - WebAssembly
+  - browser machine learning
+  - skl2onnx
+
