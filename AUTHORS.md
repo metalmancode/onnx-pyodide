@@ -13,12 +13,6 @@ the associated build patches and verification workflow, and the end-to-end
 browser proof published in this repository. The work was developed from the
 browser-local ONNX export technology used in MLDeck.
 
-## Prior work acknowledged
-
-An earlier public ONNX 1.13 / Python 3.10 browser proof was created by
-[Joseph Rocca](https://github.com/josephrocca/onnx-pyodide). This project
-acknowledges that prior work while providing a newer, recipe-based build,
-reproducible verification, and an explicit skl2onnx conversion proof.
 
 ## How to credit this work
 
