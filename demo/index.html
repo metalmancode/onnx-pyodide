@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ONNX for Pyodide — browser conversion proof</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.29.4/full/pyodide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.22.0/dist/ort.min.js"></script>
+    <style>
+      :root { color-scheme: light dark; font-family: ui-sans-serif, system-ui, sans-serif; }
+      body { max-width: 760px; margin: 3rem auto; padding: 0 1rem; line-height: 1.55; }
+      code, pre { font-family: ui-monospace, SFMono-Regular, monospace; }
+      input { width: 100%; box-sizing: border-box; padding: .7rem; }
+      button { margin-top: 1rem; padding: .7rem 1rem; cursor: pointer; }
+      pre { padding: 1rem; border: 1px solid #8886; border-radius: .5rem; white-space: pre-wrap; }
+      .ok { color: #16803a; }
+      .error { color: #c53030; }
+    </style>
+  </head>
+  <body>
+    <h1>ONNX for Pyodide</h1>
+    <p>
+      This proof trains a scikit-learn model, converts it with skl2onnx,
+      validates the graph with ONNX, and executes it with ONNX Runtime Web.
+      Everything happens in this browser tab.
+    </p>
+    <label for="wheel">Wheel URL</label>
+    <input
+      id="wheel"
+      value="../packages/onnx/dist/onnx-1.15.0-cp313-cp313-pyemscripten_2025_0_wasm32.whl"
+    />
+    <button id="run" type="button">Run end-to-end proof</button>
+    <button id="download" type="button" disabled>Download generated model.onnx</button>
+    <pre id="status">Ready.</pre>
+    <script>
+      const status = document.querySelector("#status");
+      const runButton = document.querySelector("#run");
+      const downloadButton = document.querySelector("#download");
+      let generatedModel = null;
+
+      function report(message, className = "") {
+        status.textContent += `\n${message}`;
+        status.className = className;
+      }
+
+      runButton.addEventListener("click", async () => {
+        runButton.disabled = true;
+        downloadButton.disabled = true;
+        status.textContent = "Loading Pyodide 0.29.4...";
+        status.className = "";
+        try {
+          const pyodide = await loadPyodide();
+          report("Loading NumPy, scikit-learn, packaging, and micropip...");
+          await pyodide.loadPackage(["numpy", "scikit-learn", "packaging", "micropip"]);
+
+          const wheelUrl = new URL(document.querySelector("#wheel").value, location.href).href;
+          const micropip = pyodide.pyimport("micropip");
+          report(`Installing ONNX wheel from ${wheelUrl}`);
+          await micropip.install(wheelUrl);
+          report("Installing skl2onnx 1.19.1...");
+          await micropip.install("skl2onnx==1.19.1");
+
+          report("Training and converting a LogisticRegression model...");
+          const resultJson = await pyodide.runPythonAsync(`
+import json
+import numpy as np
+import onnx
+from sklearn.linear_model import LogisticRegression
+from skl2onnx import to_onnx
+
+X = np.array([
+    [0.0, 0.0],
+    [0.0, 1.0],
+    [1.0, 0.0],
+    [1.0, 1.0],
+    [2.0, 1.0],
+    [2.0, 2.0],
+], dtype=np.float32)
+y = np.array([0, 0, 0, 1, 1, 1], dtype=np.int64)
+
+model = LogisticRegression(random_state=0).fit(X, y)
+graph = to_onnx(
+    model,
+    X[:1],
+    target_opset=15,
+    options={id(model): {"zipmap": False}},
+)
+onnx.checker.check_model(graph)
+model_bytes = graph.SerializeToString()
+
+json.dumps({
+    "model": list(model_bytes),
+    "input_name": graph.graph.input[0].name,
+    "output_names": [item.name for item in graph.graph.output],
+    "onnx_version": onnx.__version__,
+    "size": len(model_bytes),
+})
+          `);
+          const result = JSON.parse(resultJson);
+          generatedModel = Uint8Array.from(result.model);
+          report(`ONNX ${result.onnx_version} generated and checked (${result.size} bytes).`);
+
+          report("Running the generated graph with ONNX Runtime Web...");
+          const session = await ort.InferenceSession.create(generatedModel);
+          const feeds = {};
+          feeds[result.input_name] = new ort.Tensor("float32", Float32Array.from([2, 2]), [1, 2]);
+          const outputs = await session.run(feeds);
+          const outputSummary = Object.fromEntries(
+            Object.entries(outputs).map(([name, tensor]) => [
+              name,
+              Array.from(tensor.data, (value) =>
+                typeof value === "bigint" ? value.toString() : value
+              ),
+            ])
+          );
+          report(`Inference outputs: ${JSON.stringify(outputSummary)}`);
+          report("PASS: browser-local training → skl2onnx → ONNX → ONNX Runtime Web", "ok");
+          downloadButton.disabled = false;
+        } catch (error) {
+          console.error(error);
+          report(`FAIL: ${error?.stack || error}`, "error");
+        } finally {
+          runButton.disabled = false;
+        }
+      });
+
+      downloadButton.addEventListener("click", () => {
+        if (!generatedModel) return;
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(new Blob([generatedModel], { type: "application/octet-stream" }));
+        link.download = "model.onnx";
+        link.click();
+        URL.revokeObjectURL(link.href);
+      });
+    </script>
+  </body>
+</html>

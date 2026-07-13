@@ -1,0 +1,11 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.tools/
+.venv/
+.pyodide-xbuildenv-*/
+packages/onnx/build/
+packages/onnx/dist/
+dist/
+*.log
+*.whl
