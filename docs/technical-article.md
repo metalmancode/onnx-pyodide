@@ -72,7 +72,8 @@ recipe-based build, and an explicit `skl2onnx` end-to-end conversion test.
 The original upstream discussion,
 [`pyodide/pyodide-recipes#216`](https://github.com/pyodide/pyodide-recipes/issues/216),
 was closed after maintainers confirmed that ONNX now publishes Pyodide wheels
-from its own repository. The current follow-up is
-[`onnx/onnx#8192`](https://github.com/onnx/onnx/pull/8192), which successfully
-builds and runtime-tests a Python 3.14 wheel tagged for the 2026 ABI using the
-official ONNX workflow.
+from its own repository. The resulting follow-up,
+[`onnx/onnx#8192`](https://github.com/onnx/onnx/pull/8192), successfully built
+and runtime-tested a Python 3.14 wheel tagged for the 2026 ABI using the official
+ONNX workflow. It was approved and merged into ONNX on July 14, 2026 as
+[`67c35e5`](https://github.com/onnx/onnx/commit/67c35e50c2d77494432d0595765599cbcd6b51ac).

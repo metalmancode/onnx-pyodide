@@ -15,9 +15,11 @@ The project was originally published to advance
 [pyodide/pyodide-recipes#216](https://github.com/pyodide/pyodide-recipes/issues/216).
 That issue was closed after maintainers confirmed that ONNX now builds and
 publishes its own Pyodide wheels. Follow-up work therefore moved to the official
-ONNX repository, where
-[onnx/onnx#8192](https://github.com/onnx/onnx/pull/8192) proposes a tested
-Python 3.14 / `pyemscripten_2026_0_wasm32` build.
+ONNX repository. On July 14, 2026,
+[onnx/onnx#8192](https://github.com/onnx/onnx/pull/8192) was accepted and merged
+into the official project, adding the tested Python 3.14 /
+`pyemscripten_2026_0_wasm32` build configuration. The official merge commit is
+[`67c35e5`](https://github.com/onnx/onnx/commit/67c35e50c2d77494432d0595765599cbcd6b51ac).
 
 ## Upstream status
 
@@ -27,6 +29,8 @@ Python 3.14 / `pyemscripten_2026_0_wasm32` build.
   owns wheel publication; it was not closed because the recipe tests failed.
 - The official ONNX follow-up successfully produced and runtime-tested a 2026
   ABI wheel using ONNX's own Pyodide build workflow.
+- That follow-up was approved by an ONNX maintainer and merged into ONNX's
+  official repository on July 14, 2026.
 - A stable public browser distribution for the Python 3.14 Pyodide environment
   is not available yet, so that follow-up is currently validated with the
   official Pyodide Node runtime test. The stable Python 3.13 browser proof on

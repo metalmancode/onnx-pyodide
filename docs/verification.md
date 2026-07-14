@@ -182,3 +182,17 @@ The Python 3.14 target currently uses Pyodide cross-build environment
 available, so a public-browser test of this exact wheel must wait for that
 runtime release. This limitation does not apply to the stable Python 3.13
 browser proof documented earlier in this file.
+
+### Upstream result
+
+An ONNX maintainer approved the pull request, and it was merged into the
+official ONNX repository on 2026-07-14 at 13:05:03 UTC:
+
+<https://github.com/onnx/onnx/commit/67c35e50c2d77494432d0595765599cbcd6b51ac>
+
+The official pull-request validation included the Pyodide wheel build and
+runtime check. Publication jobs were skipped because this was pull-request
+validation rather than a tagged release. The next verification step is to
+confirm the wheel in an official ONNX release or weekly publication, then test
+that published artifact with the matching public Pyodide runtime when it is
+available.

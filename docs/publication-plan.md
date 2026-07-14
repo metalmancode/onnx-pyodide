@@ -6,8 +6,10 @@ The repository, release, browser proof, citation metadata, and upstream issue
 comment are published. Pyodide maintainers closed the original package request
 because ONNX now publishes its own Pyodide wheels. Follow-up packaging work has
 moved to the official ONNX repository in
-[`onnx/onnx#8192`](https://github.com/onnx/onnx/pull/8192), where the Python
-3.14 / 2026 ABI build has passed ONNX's official workflow and runtime test.
+[`onnx/onnx#8192`](https://github.com/onnx/onnx/pull/8192). The Python 3.14 /
+2026 ABI build passed ONNX's official workflow and runtime test, received
+maintainer approval, and was merged into ONNX on July 14, 2026 as
+[`67c35e5`](https://github.com/onnx/onnx/commit/67c35e50c2d77494432d0595765599cbcd6b51ac).
 
 ## Objective
 
