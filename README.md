@@ -11,9 +11,26 @@ work used in [MLDeck](https://mldeck.com/).
 · **[Try MLDeck](https://mldeck.com/)**
 · **[Contact MLDeck](mailto:contact@mldeck.com)**
 
-The project exists to advance
-[pyodide/pyodide-recipes#216](https://github.com/pyodide/pyodide-recipes/issues/216),
-which tracks adding the ONNX Python package to the Pyodide distribution.
+The project was originally published to advance
+[pyodide/pyodide-recipes#216](https://github.com/pyodide/pyodide-recipes/issues/216).
+That issue was closed after maintainers confirmed that ONNX now builds and
+publishes its own Pyodide wheels. Follow-up work therefore moved to the official
+ONNX repository, where
+[onnx/onnx#8192](https://github.com/onnx/onnx/pull/8192) proposes a tested
+Python 3.14 / `pyemscripten_2026_0_wasm32` build.
+
+## Upstream status
+
+- The original browser proof and ONNX 1.15 recipe remain reproducible records
+  of the MLDeck-derived work.
+- The separate Pyodide recipe proposal was closed because upstream ONNX now
+  owns wheel publication; it was not closed because the recipe tests failed.
+- The official ONNX follow-up successfully produced and runtime-tested a 2026
+  ABI wheel using ONNX's own Pyodide build workflow.
+- A stable public browser distribution for the Python 3.14 Pyodide environment
+  is not available yet, so that follow-up is currently validated with the
+  official Pyodide Node runtime test. The stable Python 3.13 browser proof on
+  this repository remains available above.
 
 ## What this proves
 
@@ -152,8 +169,10 @@ recipe-based reproducibility, and an explicit `skl2onnx` conversion proof.
 
 ## Status
 
-Experimental. Do not rely on the generated model in production without parity,
-schema, preprocessing, and runtime validation.
+The repository's ONNX 1.15 recipe and browser proof are experimental. Do not
+rely on a generated model in production without parity, schema, preprocessing,
+and runtime validation. Packaging work for current ONNX releases is now tracked
+upstream in [onnx/onnx#8192](https://github.com/onnx/onnx/pull/8192).
 
 See [`docs/publication-plan.md`](docs/publication-plan.md) for the recommended
 public/private boundary and release sequence.

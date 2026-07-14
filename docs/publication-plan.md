@@ -1,5 +1,14 @@
 # Publication plan
 
+## Status update — 2026-07-14
+
+The repository, release, browser proof, citation metadata, and upstream issue
+comment are published. Pyodide maintainers closed the original package request
+because ONNX now publishes its own Pyodide wheels. Follow-up packaging work has
+moved to the official ONNX repository in
+[`onnx/onnx#8192`](https://github.com/onnx/onnx/pull/8192), where the Python
+3.14 / 2026 ABI build has passed ONNX's official workflow and runtime test.
+
 ## Objective
 
 Publish the generic ONNX-for-Pyodide port as a useful technical artifact while
@@ -38,8 +47,8 @@ Keep outside this repository:
    controlled by MLDeck, then cross-link the article and repository.
 5. Post the prepared comment on `pyodide/pyodide-recipes#216` only after the
    repository and article URLs are stable.
-6. Ask maintainers whether they prefer a recipe pull request now or after an
-   ONNX version upgrade. Follow their packaging and CI requirements.
+6. Follow the maintainers' decision to keep wheel publication in ONNX itself;
+   track the tested Python 3.14 / 2026 ABI change in `onnx/onnx#8192`.
 7. Share the proof with narrowly relevant communities and link to the live
    demo, repository, and MLDeck—not to a generic home page alone.
 

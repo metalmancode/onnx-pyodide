@@ -69,8 +69,10 @@ Joseph Rocca previously published an ONNX 1.13 / Python 3.10 browser proof in
 on the same general direction with a newer Pyodide/Python version set, a
 recipe-based build, and an explicit `skl2onnx` end-to-end conversion test.
 
-The immediate upstream discussion is
-[`pyodide/pyodide-recipes#216`](https://github.com/pyodide/pyodide-recipes/issues/216).
-The next engineering step is to align the recipe with current upstream
-requirements and decide whether to land the proven ONNX 1.15 version first or
-upgrade ONNX before submission.
+The original upstream discussion,
+[`pyodide/pyodide-recipes#216`](https://github.com/pyodide/pyodide-recipes/issues/216),
+was closed after maintainers confirmed that ONNX now publishes Pyodide wheels
+from its own repository. The current follow-up is
+[`onnx/onnx#8192`](https://github.com/onnx/onnx/pull/8192), which successfully
+builds and runtime-tests a Python 3.14 wheel tagged for the 2026 ABI using the
+official ONNX workflow.

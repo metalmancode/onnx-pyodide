@@ -139,3 +139,46 @@ test_onnx_create_check_and_serialize[chrome] PASSED
 This record proves the documented version set on the stated host. It is not a
 claim that every ONNX operator, estimator, browser, or operating system is
 supported.
+
+## Official ONNX Python 3.14 / 2026 ABI follow-up
+
+Date: 2026-07-14
+
+Pyodide maintainers closed the separate recipe proposal after confirming that
+ONNX now publishes its own Pyodide wheels. They requested that support for the
+2026 ABI be added in the ONNX repository instead. The resulting upstream pull
+request is:
+
+<https://github.com/onnx/onnx/pull/8192>
+
+The first official-workflow run confirmed that changing the build selector to
+`cp314-pyodide_wasm32` exposed Emscripten deprecation pragmas in Protobuf's
+bundled Abseil headers. Because ONNX enables `ONNX_WERROR`, those warnings
+stopped the build:
+
+<https://github.com/metalmancode/onnx-pyodide-abi/actions/runs/29329169180>
+
+The follow-up retained `ONNX_WERROR` while exempting only the
+`deprecated-pragma` warning category. ONNX's official `Pyodide Build` workflow
+then completed successfully, including installation and execution in a Python
+3.14 Pyodide virtual environment under Node:
+
+<https://github.com/metalmancode/onnx-pyodide-abi/actions/runs/29329430629>
+
+Generated wheel:
+
+```text
+onnx_weekly-1.23.0.dev20260714-cp312-abi3-pyemscripten_2026_0_wasm32.whl
+size=16 MB
+sha256=ab20c140cbe5dfa63068ae476fcf9eb5b76d9fc4ce94b8fb2badbd391364bc37
+```
+
+The workflow's runtime command constructed an ONNX `NodeProto`, assigned its
+operator type, and printed the restored value successfully. The repository's
+official `lintrunner` also reported no lint issues for the change.
+
+The Python 3.14 target currently uses Pyodide cross-build environment
+`314.0.0`. A stable public browser distribution for this environment is not yet
+available, so a public-browser test of this exact wheel must wait for that
+runtime release. This limitation does not apply to the stable Python 3.13
+browser proof documented earlier in this file.
